@@ -221,27 +221,27 @@
     <div class="show-all" onclick="showAllCategories()">Show All</div>
   </div>
   <div class="category-grid" id="categoryGrid">
-    <div class="category-card" onclick="handleCategoryClick('SOS', 'Emergency Alert - Calling authorities immediately')">
+    <div class="category-card" onclick="handleCategoryClick('SOS', '112')">
       <i class="fa-solid fa-circle-exclamation" id="sos"></i>
       <div class="category-label">SOS</div>
     </div>
-    <div class="category-card" onclick="handleCategoryClick('Women Helpline', 'National Women Helpline: 181')">
+    <div class="category-card" onclick="handleCategoryClick('Women Helpline', '181')">
       <i class="fa-solid fa-heart"></i>
       <div class="category-label">Women Helpline</div>
     </div>
-    <div class="category-card" onclick="handleCategoryClick('Police', 'Emergency Police: 100')">
+    <div class="category-card" onclick="handleCategoryClick('Police', '100')">
       <i class="fa-solid fa-building-shield"></i>
       <div class="category-label">Police</div>
     </div>
-    <div class="category-card" onclick="handleCategoryClick('Ambulance', 'Ambulance Services: 102 or 108')">
+    <div class="category-card" onclick="handleCategoryClick('Ambulance', '102')">
       <i class="fa fa-ambulance"></i>
       <div class="category-label">Ambulance</div>
     </div>
-    <div class="category-card" onclick="handleCategoryClick('Emergency', 'General Emergency: 112')">
+    <div class="category-card" onclick="handleCategoryClick('Emergency', '112')">
       <i class="fa fa-hospital"></i>
       <div class="category-label">Emergency</div>
     </div>
-    <div class="category-card" onclick="handleCategoryClick('Fake Calls/Alarms', 'Report suspicious activity or set silent alarm')">
+    <div class="category-card" onclick="handleCategoryClick('Fake Calls/Alarms', '100')">
       <i class="fa-solid fa-phone-volume"></i>
       <div class="category-label">Fake Calls/Alarms</div>
     </div>
@@ -313,16 +313,16 @@
       }
     }
 
-    // Handle category clicks
-    function handleCategoryClick(category, action) {
+    // Handle category clicks - redirects to mobile dialpad
+    function handleCategoryClick(category, phoneNumber) {
       if (category === 'SOS') {
-        if (confirm('SOS activated! Are you sure you want to call emergency services?')) {
-          alert('Simulating emergency call. In a real app, this would dial 112 or your local emergency number.');
-          // In a real mobile app, use: window.location.href = 'tel:112';
+        if (confirm(`SOS activated for ${category}! Confirm to call ${phoneNumber}?`)) {
+          window.location.href = 'tel:' + phoneNumber;
         }
       } else {
-        alert(`${category}: ${action}. In a real app, this would initiate a call or provide more details.`);
-        // Example: window.location.href = 'tel:181'; for Women Helpline
+        if (confirm(`Calling ${category} at ${phoneNumber}. Proceed?`)) {
+          window.location.href = 'tel:' + phoneNumber;
+        }
       }
     }
 
