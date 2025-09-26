@@ -211,62 +211,139 @@
       </div>
     </div>
     <div class="search-box">
-      <input type="text" placeholder="Search locations">
+      <input type="text" placeholder="Search locations" id="searchInput">
       <i class="fa fa-magnifying-glass"></i>
     </div>
   </div>
 
-  <div class="section-row">
+  <div class="section-row" id="homeSection">
     <div>Categories</div>
-    <div class="show-all">Show All</div>
+    <div class="show-all" onclick="showAllCategories()">Show All</div>
   </div>
-  <div class="category-grid">
-    <div class="category-card">
+  <div class="category-grid" id="categoryGrid">
+    <div class="category-card" onclick="handleCategoryClick('SOS', 'Emergency Alert - Calling authorities immediately')">
       <i class="fa-solid fa-circle-exclamation" id="sos"></i>
-      <div class="category-label" >SOS</div>
+      <div class="category-label">SOS</div>
     </div>
-    <div class="category-card">
+    <div class="category-card" onclick="handleCategoryClick('Women Helpline', 'National Women Helpline: 181')">
       <i class="fa-solid fa-heart"></i>
       <div class="category-label">Women Helpline</div>
     </div>
-    <div class="category-card"><i class="fa-solid fa-building-shield"></i>
+    <div class="category-card" onclick="handleCategoryClick('Police', 'Emergency Police: 100')">
+      <i class="fa-solid fa-building-shield"></i>
       <div class="category-label">Police</div>
     </div>
-    <div class="category-card">
+    <div class="category-card" onclick="handleCategoryClick('Ambulance', 'Ambulance Services: 102 or 108')">
       <i class="fa fa-ambulance"></i>
       <div class="category-label">Ambulance</div>
     </div>
-    <div class="category-card">
+    <div class="category-card" onclick="handleCategoryClick('Emergency', 'General Emergency: 112')">
       <i class="fa fa-hospital"></i>
       <div class="category-label">Emergency</div>
     </div>
-    <div class="category-card">
+    <div class="category-card" onclick="handleCategoryClick('Fake Calls/Alarms', 'Report suspicious activity or set silent alarm')">
       <i class="fa-solid fa-phone-volume"></i>
       <div class="category-label">Fake Calls/Alarms</div>
     </div>
   </div>
 
+  <!-- Hidden sections for other nav items (can be expanded later) -->
+  <div id="reviewsSection" style="display: none; padding: 20px;">
+    <h2>Reviews</h2>
+    <p>Coming soon: User reviews and ratings.</p>
+  </div>
+
+  <div id="routesSection" style="display: none; padding: 20px;">
+    <h2>Routes</h2>
+    <p>Coming soon: Safe route planning and navigation.</p>
+  </div>
+
+  <div id="profileSection" style="display: none; padding: 20px;">
+    <h2>Profile</h2>
+    <p>Coming soon: User profile and settings.</p>
+  </div>
+
   <div class="bottom-nav">
-    <div class="nav-item active"><div class = "new">
+    <div class="nav-item active" onclick="switchNav('home')"><div class="new">
       <i class="fa fa-home"></i>
       <div>Home</div></div>
     </div>
-    <div class="nav-item"><div class = "new">
+    <div class="nav-item" onclick="switchNav('reviews')"><div class="new">
       <i class="fa-regular fa-id-badge"></i>
       <div>Reviews</div></div>
     </div>
-    <div class="nav-item"><div class = "new">
+    <div class="nav-item" onclick="switchNav('routes')"><div class="new">
       <i class="fa-solid fa-route"></i>
       <div>Routes</div></div>
     </div>
-    <div class="nav-item"><div class = "new">
+    <div class="nav-item" onclick="switchNav('profile')"><div class="new">
       <i class="fa fa-user"></i>
       <div>Profile</div></div>
     </div>
   </div>
+
+  <script>
+    // Handle bottom navigation switching
+    function switchNav(section) {
+      // Hide all sections
+      document.getElementById('homeSection').style.display = 'none';
+      document.getElementById('categoryGrid').style.display = 'none';
+      document.getElementById('reviewsSection').style.display = 'none';
+      document.getElementById('routesSection').style.display = 'none';
+      document.getElementById('profileSection').style.display = 'none';
+
+      // Remove active class from all nav items
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+
+      // Show selected section and add active class
+      if (section === 'home') {
+        document.getElementById('homeSection').style.display = 'flex';
+        document.getElementById('categoryGrid').style.display = 'grid';
+        event.target.closest('.nav-item').classList.add('active');
+      } else if (section === 'reviews') {
+        document.getElementById('reviewsSection').style.display = 'block';
+        event.target.closest('.nav-item').classList.add('active');
+      } else if (section === 'routes') {
+        document.getElementById('routesSection').style.display = 'block';
+        event.target.closest('.nav-item').classList.add('active');
+      } else if (section === 'profile') {
+        document.getElementById('profileSection').style.display = 'block';
+        event.target.closest('.nav-item').classList.add('active');
+      }
+    }
+
+    // Handle category clicks
+    function handleCategoryClick(category, action) {
+      if (category === 'SOS') {
+        if (confirm('SOS activated! Are you sure you want to call emergency services?')) {
+          alert('Simulating emergency call. In a real app, this would dial 112 or your local emergency number.');
+          // In a real mobile app, use: window.location.href = 'tel:112';
+        }
+      } else {
+        alert(`${category}: ${action}. In a real app, this would initiate a call or provide more details.`);
+        // Example: window.location.href = 'tel:181'; for Women Helpline
+      }
+    }
+
+    // Show all categories (placeholder - already all shown, but can expand)
+    function showAllCategories() {
+      alert('All categories are already displayed. More features coming soon!');
+    }
+
+    // Basic search functionality (filters categories by label)
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll('.category-card');
+      cards.forEach(card => {
+        const label = card.querySelector('.category-label').textContent.toLowerCase();
+        if (label.includes(searchTerm)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
-
-
-
