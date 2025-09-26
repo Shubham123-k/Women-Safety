@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Doctor Appointment UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>She Shield</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
@@ -188,13 +189,103 @@
       font-size: 1.44em;
       margin-bottom: 3px;
     }
+    @media screen and (max-width: 768px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .header {
+        padding: 25px 15px 15px 15px;
+      }
+      .section-row {
+        padding: 15px 15px 5px 15px;
+        font-size: 1em;
+      }
+      .search-box {
+        margin-top: 15px;
+        padding: 5px 8px;
+      }
+      .search-box input {
+        padding: 8px 6px 8px 0;
+        font-size: 0.95em;
+      }
+      .avatar {
+        width: 50px;
+        height: 50px;
+        margin-right: 12px;
+      }
+      .bottom-nav {
+        height: 60px;
+        border-radius: 15px 15px 0 0;
+      }
+      .nav-item i {
+        font-size: 1.3em;
+      }
+      .nav-item {
+        font-size: 0.85em;
+      }
+    }
     @media screen and (max-width: 420px) {
       .header, .section-row, .category-grid, .top-doctors-title, .doctor-card {
         margin-left: 6px;
         margin-right: 6px;
       }
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
       .doctor-card {
         padding: 11px 10px;
+      }
+      .header {
+        padding: 20px 10px 10px 10px;
+        border-radius: 0 0 15px 15px;
+      }
+      .section-row {
+        padding: 15px 10px 5px 10px;
+        font-size: 0.95em;
+      }
+      .search-box {
+        margin-top: 12px;
+        padding: 4px 6px;
+      }
+      .search-box input {
+        padding: 6px 4px 6px 0;
+        font-size: 0.9em;
+      }
+      .avatar {
+        width: 45px;
+        height: 45px;
+        margin-right: 10px;
+      }
+      .welcome-text {
+        font-size: 0.95em;
+      }
+      .category-card {
+        padding: 15px 0 12px 0;
+      }
+      .category-card i {
+        font-size: 1.8em;
+      }
+      .category-label {
+        font-size: 0.85em;
+      }
+      body { padding-bottom: 70px; }
+    }
+    @media screen and (max-width: 320px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin: 0 8px;
+      }
+      .bottom-nav {
+        height: 55px;
+      }
+      .nav-item i {
+        font-size: 1.2em;
+      }
+      .nav-item {
+        font-size: 0.8em;
       }
     }
    
